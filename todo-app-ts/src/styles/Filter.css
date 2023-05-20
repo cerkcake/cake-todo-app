@@ -1,0 +1,54 @@
+.select {
+  position: absolute;
+  right: 6rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  z-index: 1;
+  text-align: left;
+}
+.select span {
+  background-color: white;
+  width: 150px;
+  line-height: 40px;
+  padding: 5px 40px;
+  border-radius: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  cursor: pointer;
+}
+.icon {
+  position: absolute;
+  top: 13px;
+  right: 12px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.select .rotate {
+  transform: rotate(180deg);
+}
+
+.select span:active + .rotate {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.select ul {
+  width: 80%;
+  border-radius: 10px;
+  background-color: white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.select ul li {
+  list-style: none;
+  padding: 5px;
+  margin-left: -2rem;
+  margin-right: 0.5rem;
+  padding-left: 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.select ul li:hover {
+  background-color: #585292;
+  color: white;
+}

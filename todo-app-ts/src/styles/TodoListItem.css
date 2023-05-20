@@ -1,0 +1,63 @@
+.completed {
+  text-decoration: line-through;
+  /* opacity: 0.4; */
+}
+
+.todo-list {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  margin: 0.5rem 0;
+  background-color: #fff;
+  border-radius: 25px;
+  width: 100%;
+}
+
+/* checkbox */
+
+form input[type="checkbox"] + label {
+  position: relative;
+  top: 0.8rem;
+  left: 1rem;
+  cursor: pointer;
+}
+
+form input[type="checkbox"] {
+  display: none;
+}
+
+form input[type="checkbox"] + label:before {
+  content: "\2714";
+  border: 0.1em solid #585292;
+  border-radius: 0.4em;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  padding-left: 0.2em;
+  padding-bottom: 0.3em;
+  margin-right: 0.3em;
+  vertical-align: bottom;
+  color: transparent;
+  transition: 0.1s;
+}
+
+input[type="checkbox"] + label:active:before {
+  transform: scale(0);
+}
+
+input[type="checkbox"]:checked + label:before {
+  background-color: #585292;
+  border-color: #585292;
+  color: #fff;
+}
+
+/* input[type="checkbox"]:disabled + label:before {
+  transform: scale(1);
+  border-color: #aaa;
+}
+
+input[type="checkbox"]:checked:disabled + label:before {
+  transform: scale(1);
+  background-color: #797692;
+  border-color: #797692;
+} */
