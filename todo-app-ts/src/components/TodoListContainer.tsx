@@ -9,14 +9,14 @@ import { API_URL } from "../Config";
 
 type Props = {
   todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   getTodos: GetTodos;
 };
 
-const TodoListContainer = ({ todos, setTodos, getTodos }: Props) => {
+const TodoListContainer = ({ todos, getTodos }: Props) => {
   const [input, setInput] = useState<string>("");
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
+  const [disableCheckedId, setDisableCheckedId] = useState("");
 
   const onAdded = (input: string) => {
     const data = JSON.stringify({
@@ -45,6 +45,7 @@ const TodoListContainer = ({ todos, setTodos, getTodos }: Props) => {
       });
   };
   const onCompleted = (item: Todo) => {
+    setDisableCheckedId(item.id);
     const data = JSON.stringify({
       completed: !item.completed,
     });
@@ -63,6 +64,7 @@ const TodoListContainer = ({ todos, setTodos, getTodos }: Props) => {
       .request(config)
       .then(() => {
         getTodos();
+        setDisableCheckedId("");
       })
       .catch((error) => {
         console.log(error);
@@ -146,6 +148,7 @@ const TodoListContainer = ({ todos, setTodos, getTodos }: Props) => {
           onDeleted={onDeleted}
           onEdited={onEdited}
           onCompleted={onCompleted}
+          disableCheckedId={disableCheckedId}
         />
       ))}
 

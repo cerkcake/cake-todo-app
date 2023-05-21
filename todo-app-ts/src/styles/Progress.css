@@ -1,20 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
 .progress-container {
   color: aliceblue;
   text-align: left;
-  padding: 20px;
+  padding: 10px 20px;
   background: #e07c7c;
   border-radius: 20px;
 }
 
 .progress-container h2 {
   color: #f0e5e5;
-  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
 }
 
 .progress-container p {
   color: #ecbebe;
-  font-family: "Montserrat", sans-serif;
 }
 .progress-bar {
   height: 10px;

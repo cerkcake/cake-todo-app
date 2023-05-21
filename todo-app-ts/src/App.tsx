@@ -26,7 +26,6 @@ function App() {
       <Progress todos={todos} />
       <TodoListContainer
         todos={todos}
-        setTodos={setTodos}
         getTodos={getTodos}
       />
     </div>

@@ -16,15 +16,18 @@
   color: #fff;
 }
 .todo-form input {
-  padding: 15px 32px 15px 16px;
-  border-radius: 25px;
+  padding: 18px 32px 18px 16px;
+  border-radius: 30px;
   border: none;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   outline: none;
   width: 100%;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
 }
 .todo-form input[type="text"],
 textarea {
   background-color: #fff;
   height: 20px;
 }
+

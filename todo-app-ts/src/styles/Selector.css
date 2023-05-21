@@ -1,19 +1,12 @@
-.selector {
-  position: relative;
-  text-align: left;
-  display: flex;
-  padding: 1rem;
-}
-
 .selector-container {
   position: absolute;
-  top: 1rem;
-  left: -4rem;
   background-color: white;
+  right: 4rem;
   border: none;
   padding: 10px;
   border-radius: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  margin-top: -1rem;
 }
 
 .selector-container button {
@@ -30,11 +23,11 @@
   background-color: #f5f4f4;
 }
 
-.selector-container button#edit{
+.selector-container button#edit {
   padding: 5px 0;
 }
 
-.selector-container button#delete{
+.selector-container button#delete {
   padding: 5px 0;
   color: rgb(255, 52, 52);
 }

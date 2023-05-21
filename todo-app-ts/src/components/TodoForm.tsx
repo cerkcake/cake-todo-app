@@ -32,6 +32,7 @@ const TodoForm = ({ inputValue, setInput, selectedFunc }: Props) => {
         value={inputValue}
         placeholder="Add a todo"
         onChange={handleChange}
+        maxLength={80}
       />
       {isTyping && (
         <button className="todo-button" onClick={handleSubmit}>
