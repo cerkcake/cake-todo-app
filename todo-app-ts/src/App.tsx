@@ -27,9 +27,6 @@ function App() {
     if (isOpenFilter) {
       setIsOpenFilter(false);
     }
-    if (openSelectorId !== "") {
-      setOpenSelectorId("");
-    }
   };
 
   return (
