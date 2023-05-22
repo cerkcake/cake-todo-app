@@ -1,7 +1,8 @@
-type AddTodo = (input: string) => void;
+type AddOrEditTodo = (newTitle: string) => void;
 type DeleteTodo = (id: string) => void;
 type EditTodo = (id: string, newTitle: string) => void;
-type CompleteTodo = (item: Todo) => void;
+type CompleteTodo = (todo: Todo) => void;
+type SelectOption = (id: string) => void;
 
 type Todo = {
   id: string;
@@ -11,8 +12,3 @@ type Todo = {
 type SetTodos = () => void;
 
 type GetTodos = () => void;
-
-type Option = {
-  value: string;
-  onClick: () => void;
-};

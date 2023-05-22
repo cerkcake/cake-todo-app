@@ -6,6 +6,8 @@ import axios from "axios";
 import { API_URL } from "./Config";
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
+  const [openSelectorId, setOpenSelectorId] = useState("");
 
   const getTodos = () => {
     axios({
@@ -21,12 +23,25 @@ function App() {
     getTodos();
   }, []);
 
+  const closeHandler = () => {
+    if (isOpenFilter) {
+      setIsOpenFilter(false);
+    }
+    if (openSelectorId !== "") {
+      setOpenSelectorId("");
+    }
+  };
+
   return (
-    <div className="App">
+    <div className="App" onClick={() => closeHandler()}>
       <Progress todos={todos} />
       <TodoListContainer
         todos={todos}
         getTodos={getTodos}
+        isOpenFilter={isOpenFilter}
+        setIsOpenFilter={setIsOpenFilter}
+        openSelectorId={openSelectorId}
+        setOpenSelectorId={setOpenSelectorId}
       />
     </div>
   );

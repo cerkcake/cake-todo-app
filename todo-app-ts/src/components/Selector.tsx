@@ -6,14 +6,15 @@ type Props = {
   todoId: string;
   handleClickEdit: (todoId: string) => void;
   handleClickDelete: (todoId: string) => void;
-  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenSelectorId:(todoId:string)=> void
+  openSelectorId:string
 };
 
 const Selector = ({
   todoId,
   handleClickEdit,
   handleClickDelete,
-  setToggle,
+  setOpenSelectorId
 }: Props) => {
   return (
     <div className="selector-container">
@@ -21,7 +22,7 @@ const Selector = ({
         id="edit"
         onClick={() => {
           handleClickEdit(todoId);
-          setToggle(false);
+          setOpenSelectorId("");
         }}
       >
         edit
@@ -30,7 +31,6 @@ const Selector = ({
         id="delete"
         onClick={() => {
           handleClickDelete(todoId);
-          setToggle(false);
         }}
       >
         delete

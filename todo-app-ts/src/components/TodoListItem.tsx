@@ -9,7 +9,10 @@ type Props = {
   onDeleted: DeleteTodo;
   onEdited: EditTodo;
   onCompleted: CompleteTodo;
+  onSelected: SelectOption;
   disableCheckedId: string;
+  openSelectorId: string;
+  setOpenSelectorId: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const TodoListItem = ({
@@ -17,18 +20,20 @@ const TodoListItem = ({
   onDeleted,
   onEdited,
   onCompleted,
+  onSelected,
   disableCheckedId,
+  openSelectorId,
+  setOpenSelectorId,
 }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [editTitle, setEditTitle] = useState(filteredTodo.title);
-  const [toggle, setToggle] = useState(false);
+  const [titleToEdit, setTitleToEdit] = useState(filteredTodo.title);
+
   const handleClickDelete = (id: string) => {
     onDeleted(id);
   };
 
   const handleClickEdit = () => {
     setIsEditing(true);
-    console.log(isEditing);
   };
 
   const handleEditTitle = (newTitle: string) => {
@@ -36,9 +41,14 @@ const TodoListItem = ({
     onEdited(id, newTitle);
   };
 
+  const handleClickSelector = (selectedId: string) => {
+    onSelected(selectedId);
+  };
+
   useEffect(() => {
     setIsEditing(false);
   }, [filteredTodo]);
+  
   return (
     <Fragment>
       {!isEditing ? (
@@ -62,24 +72,29 @@ const TodoListItem = ({
               <label htmlFor={filteredTodo.id}>{filteredTodo.title}</label>
             </div>
             <div className="todo-editor">
-              <TfiMoreAlt onClick={() => setToggle(!toggle)} />
+              <TfiMoreAlt
+                onClick={() => {
+                  handleClickSelector(filteredTodo.id);
+                }}
+              />
             </div>
           </div>
-          <div>
-            {toggle && (
+          {openSelectorId === filteredTodo.id && (
+            <div>
               <Selector
                 handleClickEdit={handleClickEdit}
                 handleClickDelete={handleClickDelete}
                 todoId={filteredTodo.id}
-                setToggle={setToggle}
+                openSelectorId={openSelectorId}
+                setOpenSelectorId={setOpenSelectorId}
               />
-            )}
-          </div>
+            </div>
+          )}
         </Fragment>
       ) : (
         <TodoForm
-          inputValue={editTitle}
-          setInput={setEditTitle}
+          inputValue={titleToEdit}
+          setInputValue={setTitleToEdit}
           selectedFunc={handleEditTitle}
         />
       )}

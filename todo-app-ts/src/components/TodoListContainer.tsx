@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import TodoForm from "./TodoForm";
@@ -10,25 +10,36 @@ import { API_URL } from "../Config";
 type Props = {
   todos: Todo[];
   getTodos: GetTodos;
+  isOpenFilter: boolean;
+  setIsOpenFilter: React.Dispatch<React.SetStateAction<boolean>>;
+  openSelectorId: string;
+  setOpenSelectorId: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const TodoListContainer = ({ todos, getTodos }: Props) => {
-  const [input, setInput] = useState<string>("");
+const TodoListContainer = ({
+  todos,
+  getTodos,
+  isOpenFilter,
+  setIsOpenFilter,
+  openSelectorId,
+  setOpenSelectorId,
+}: Props) => {
+  const [titleToAdd, setTitleToAdd] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
   const [disableCheckedId, setDisableCheckedId] = useState("");
 
-  const onAdded = (input: string) => {
+  const onAdded = (newTitle: string) => {
     const data = JSON.stringify({
       id: uuidv4(),
-      title: input,
+      title: newTitle,
       completed: false,
     });
     console.log(data);
 
     const config = {
       method: "post",
-      url: "http://localhost:3001/todos",
+      url: `${API_URL}/todos`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -44,16 +55,16 @@ const TodoListContainer = ({ todos, getTodos }: Props) => {
         console.log(error);
       });
   };
-  const onCompleted = (item: Todo) => {
-    setDisableCheckedId(item.id);
+  const onCompleted = (todo: Todo) => {
+    setDisableCheckedId(todo.id);
     const data = JSON.stringify({
-      completed: !item.completed,
+      completed: !todo.completed,
     });
 
     const config = {
       method: "patch",
       maxBodyLength: Infinity,
-      url: `${API_URL}/todos/${item.id}`,
+      url: `${API_URL}/todos/${todo.id}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -114,6 +125,14 @@ const TodoListContainer = ({ todos, getTodos }: Props) => {
       });
   };
 
+  const onSelected = (selectedId: string) => {
+    if (selectedId === openSelectorId) {
+      setOpenSelectorId("");
+    } else {
+      setOpenSelectorId(selectedId);
+    }
+  };
+
   useEffect(() => {
     let filteredTodosToUpdate = [...todos];
     if (selectedFilter === "All") {
@@ -129,7 +148,7 @@ const TodoListContainer = ({ todos, getTodos }: Props) => {
   }, [selectedFilter, todos]);
 
   useEffect(() => {
-    setInput("");
+    setTitleToAdd("");
   }, [todos]);
 
   return (
@@ -139,6 +158,9 @@ const TodoListContainer = ({ todos, getTodos }: Props) => {
         <Filter
           selectedFilter={selectedFilter}
           setSelectedFilter={setSelectedFilter}
+          isOpenFilter={isOpenFilter}
+          setIsOpenFilter={setIsOpenFilter}
+          setOpenSelectorId={setOpenSelectorId}
         />
       </div>
       {filteredTodos.map((filteredTodo) => (
@@ -148,11 +170,18 @@ const TodoListContainer = ({ todos, getTodos }: Props) => {
           onDeleted={onDeleted}
           onEdited={onEdited}
           onCompleted={onCompleted}
+          onSelected={onSelected}
           disableCheckedId={disableCheckedId}
+          setOpenSelectorId={setOpenSelectorId}
+          openSelectorId={openSelectorId}
         />
       ))}
 
-      <TodoForm inputValue={input} setInput={setInput} selectedFunc={onAdded} />
+      <TodoForm
+        inputValue={titleToAdd}
+        setInputValue={setTitleToAdd}
+        selectedFunc={onAdded}
+      />
     </div>
   );
 };

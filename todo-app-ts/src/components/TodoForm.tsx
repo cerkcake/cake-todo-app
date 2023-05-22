@@ -3,14 +3,14 @@ import "../styles/TodoForm.css";
 
 type Props = {
   inputValue: string;
-  setInput: React.Dispatch<React.SetStateAction<string>>;
-  selectedFunc: AddTodo;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  selectedFunc: AddOrEditTodo;
 };
 
-const TodoForm = ({ inputValue, setInput, selectedFunc }: Props) => {
+const TodoForm = ({ inputValue, setInputValue, selectedFunc }: Props) => {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+    setInputValue(e.target.value);
   };
   const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
