@@ -13,6 +13,9 @@ type Props = {
   disableCheckedId: string;
   openSelectorId: string;
   setOpenSelectorId: React.Dispatch<React.SetStateAction<string>>;
+  editingId: string;
+  setEditingId: React.Dispatch<React.SetStateAction<string>>;
+  setTitleToAdd: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const TodoListItem = ({
@@ -24,8 +27,10 @@ const TodoListItem = ({
   disableCheckedId,
   openSelectorId,
   setOpenSelectorId,
+  editingId,
+  setEditingId,
+  setTitleToAdd,
 }: Props) => {
-  const [isEditing, setIsEditing] = useState(false);
   const [titleToEdit, setTitleToEdit] = useState(filteredTodo.title);
 
   const handleClickDelete = (id: string) => {
@@ -33,7 +38,7 @@ const TodoListItem = ({
   };
 
   const handleClickEdit = () => {
-    setIsEditing(true);
+    setEditingId(filteredTodo.id);
   };
 
   const handleEditTitle = (newTitle: string) => {
@@ -43,15 +48,17 @@ const TodoListItem = ({
 
   const handleClickSelector = (selectedId: string) => {
     onSelected(selectedId);
+    setEditingId("");
+    setTitleToAdd("");
   };
 
   useEffect(() => {
-    setIsEditing(false);
+    setEditingId("");
   }, [filteredTodo]);
-  
+
   return (
     <Fragment>
-      {!isEditing ? (
+      {!(editingId === filteredTodo.id) ? (
         <Fragment>
           <div
             className={
@@ -87,6 +94,7 @@ const TodoListItem = ({
                 todoId={filteredTodo.id}
                 openSelectorId={openSelectorId}
                 setOpenSelectorId={setOpenSelectorId}
+                setEditingId={setEditingId}
               />
             </div>
           )}
@@ -96,6 +104,7 @@ const TodoListItem = ({
           inputValue={titleToEdit}
           setInputValue={setTitleToEdit}
           selectedFunc={handleEditTitle}
+          setOpenSelectorId={setOpenSelectorId}
         />
       )}
     </Fragment>

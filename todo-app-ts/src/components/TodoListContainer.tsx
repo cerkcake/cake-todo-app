@@ -28,6 +28,7 @@ const TodoListContainer = ({
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
   const [disableCheckedId, setDisableCheckedId] = useState("");
+  const [editingId, setEditingId] = useState("");
 
   const onAdded = (newTitle: string) => {
     const data = JSON.stringify({
@@ -174,6 +175,9 @@ const TodoListContainer = ({
           disableCheckedId={disableCheckedId}
           setOpenSelectorId={setOpenSelectorId}
           openSelectorId={openSelectorId}
+          editingId={editingId}
+          setEditingId={setEditingId}
+          setTitleToAdd={setTitleToAdd}
         />
       ))}
 
@@ -181,6 +185,7 @@ const TodoListContainer = ({
         inputValue={titleToAdd}
         setInputValue={setTitleToAdd}
         selectedFunc={onAdded}
+        setOpenSelectorId={setOpenSelectorId}
       />
     </div>
   );

@@ -5,9 +5,15 @@ type Props = {
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   selectedFunc: AddOrEditTodo;
+  setOpenSelectorId: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const TodoForm = ({ inputValue, setInputValue, selectedFunc }: Props) => {
+const TodoForm = ({
+  inputValue,
+  setInputValue,
+  selectedFunc,
+  setOpenSelectorId,
+}: Props) => {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -32,6 +38,7 @@ const TodoForm = ({ inputValue, setInputValue, selectedFunc }: Props) => {
         value={inputValue}
         placeholder="Add a todo"
         onChange={handleChange}
+        onSelect={() => setOpenSelectorId("")}
         maxLength={80}
       />
       {isTyping && (

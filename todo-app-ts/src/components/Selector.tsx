@@ -6,15 +6,17 @@ type Props = {
   todoId: string;
   handleClickEdit: (todoId: string) => void;
   handleClickDelete: (todoId: string) => void;
-  setOpenSelectorId:(todoId:string)=> void
-  openSelectorId:string
+  setOpenSelectorId: (todoId: string) => void;
+  openSelectorId: string;
+  setEditingId: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const Selector = ({
   todoId,
   handleClickEdit,
   handleClickDelete,
-  setOpenSelectorId
+  setOpenSelectorId,
+  setEditingId,
 }: Props) => {
   return (
     <div className="selector-container">
@@ -23,6 +25,7 @@ const Selector = ({
         onClick={() => {
           handleClickEdit(todoId);
           setOpenSelectorId("");
+          setEditingId(todoId)
         }}
       >
         edit
