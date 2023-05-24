@@ -1,5 +1,3 @@
-import React from "react";
-
 import "../styles/Selector.css";
 
 type Props = {
@@ -8,7 +6,7 @@ type Props = {
   handleClickDelete: (todoId: string) => void;
   setOpenSelectorId: (todoId: string) => void;
   openSelectorId: string;
-  setEditingId: React.Dispatch<React.SetStateAction<string>>;
+  setEditingId: setStateString;
 };
 
 const Selector = ({
@@ -25,7 +23,7 @@ const Selector = ({
         onClick={() => {
           handleClickEdit(todoId);
           setOpenSelectorId("");
-          setEditingId(todoId)
+          setEditingId(todoId);
         }}
       >
         edit

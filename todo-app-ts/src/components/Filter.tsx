@@ -4,10 +4,10 @@ import "../styles/Filter.css";
 
 type Props = {
   selectedFilter: string;
-  setSelectedFilter: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedFilter: setStateString;
   isOpenFilter: boolean;
-  setIsOpenFilter: React.Dispatch<React.SetStateAction<boolean>>;
-  setOpenSelectorId: React.Dispatch<React.SetStateAction<string>>;
+  setIsOpenFilter: setStateBoolean;
+  setOpenSelectorId: setStateString;
 };
 
 const Filter = ({

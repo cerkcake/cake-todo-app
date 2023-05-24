@@ -24,6 +24,11 @@
 }
 
 /* checkbox */
+.todo-checked label {
+  word-wrap: break-word;
+  word-break: break-all;
+  }
+
 
 .todo-checked input[type="checkbox"] + label {
   cursor: pointer;
@@ -57,7 +62,6 @@ input[type="checkbox"]:checked + label:before {
   border-color: #585292;
   color: #fff;
 }
-
 
 input[type="checkbox"]:disabled + label:before {
   transform: scale(1);

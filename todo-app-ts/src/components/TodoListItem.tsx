@@ -12,10 +12,10 @@ type Props = {
   onSelected: SelectOption;
   disableCheckedId: string;
   openSelectorId: string;
-  setOpenSelectorId: React.Dispatch<React.SetStateAction<string>>;
+  setOpenSelectorId: setStateString;
   editingId: string;
-  setEditingId: React.Dispatch<React.SetStateAction<string>>;
-  setTitleToAdd: React.Dispatch<React.SetStateAction<string>>;
+  setEditingId: setStateString;
+  setTitleToAdd: setStateString;
 };
 
 const TodoListItem = ({

@@ -11,9 +11,9 @@ type Props = {
   todos: Todo[];
   getTodos: GetTodos;
   isOpenFilter: boolean;
-  setIsOpenFilter: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpenFilter: setStateBoolean;
   openSelectorId: string;
-  setOpenSelectorId: React.Dispatch<React.SetStateAction<string>>;
+  setOpenSelectorId: setStateString;
 };
 
 const TodoListContainer = ({

@@ -1,11 +1,11 @@
-import React, { useEffect, useState, FormEvent, ChangeEvent } from "react";
+import { useEffect, useState, FormEvent, ChangeEvent } from "react";
 import "../styles/TodoForm.css";
 
 type Props = {
   inputValue: string;
-  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  setInputValue: setStateString
   selectedFunc: AddOrEditTodo;
-  setOpenSelectorId: React.Dispatch<React.SetStateAction<string>>;
+  setOpenSelectorId: setStateString
 };
 
 const TodoForm = ({
@@ -39,7 +39,7 @@ const TodoForm = ({
         placeholder="Add a todo"
         onChange={handleChange}
         onSelect={() => setOpenSelectorId("")}
-        maxLength={80}
+        maxLength={70}
       />
       {isTyping && (
         <button className="todo-button" onClick={handleSubmit}>
