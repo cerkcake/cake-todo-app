@@ -23,10 +23,10 @@ const TodoForm = ({
     selectedFunc(inputValue);
   };
   useEffect(() => {
-    if (inputValue.length > 0) {
+    if (inputValue.trim().length > 0) {
       setIsTyping(true);
     }
-    if (inputValue.length === 0) {
+    if (inputValue.trim().length === 0) {
       setIsTyping(false);
     }
   }, [inputValue]);
